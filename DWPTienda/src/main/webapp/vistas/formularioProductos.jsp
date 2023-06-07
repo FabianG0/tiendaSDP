@@ -61,7 +61,7 @@
         <div class="text"><i class='bx bx-package icon'></i> Nuevo Producto</div>
         <div class="container">
             <div class="content">
-              <form action="/ProductoServelet" id="formulario">
+              <form action="<%= request.getContextPath() %>/ProductoServelet" id="formulario" method="post">
                 <div class="user-details">
                 <p style="margin-bottom:22px;">A continuación ingresa la información solicitada en el siguiente formulario y da clic en el botón <b>Aceptar</b>.</p>
                 <div class="input-box">
@@ -100,7 +100,7 @@
                   </div>
                   <div class="input-box">
                     <span class="details">Imagen <span class="required">*</span></span>
-                    <input type="file" name="imagen" accept="image/*" name="imgaen"required>
+                    <input type="file" name="imagen" accept="image/*" name="imgaen">
                     <small></small>
                   </div>
                 </div>

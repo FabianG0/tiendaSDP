@@ -9,8 +9,10 @@
     <title>Diseño De Sistemas</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/estilo.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    
 </head>
 <body>
+<jsp:include page="<%= request.getContextPath() %>/ProductoServelet" />
 	<nav class="sidebar close">
         <header>
             <div class="image-text">
