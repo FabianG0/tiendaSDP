@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.app.modelo.Producto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -12,7 +14,6 @@
     
 </head>
 <body>
-<jsp:include page="<%= request.getContextPath() %>/ProductoServelet" />
 	<nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -31,7 +32,7 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="<%= request.getContextPath() %>/vistas/inventario.jsp">
+                        <a href="<%= request.getContextPath() %>/ProductosServlet?accion=inventario">
                             <i class='bx bx-package icon' ></i>
                             <span class="text nav-text">Inventario</span>
                         </a>
@@ -62,7 +63,7 @@
         <div class="text"><i class='bx bx-package icon'></i> Inventario</div>
 
         <div class="add_button"><a href="<%= request.getContextPath() %>/vistas/formularioProductos.jsp"><button type="submit" class="Agregar">Nuevo Producto</button></a></div>
-
+		
             <table class="table-data">
                 <tr class="data names">
                     <th class="data-title">Imagen</th>
@@ -75,6 +76,21 @@
                     <th class="data-title"></th>
                     <th class="data-title"></th>
                 </tr>
+                <% ArrayList<Producto> productos =  (ArrayList<Producto>) request.getAttribute("productos");
+                	if(productos != null){
+	               		for( Producto p: productos){%>
+	               		<tr>
+	               			<td></td>	
+				            <td class="data-list"><%= p.getId_producto()%></td>
+				            <td class="data-list"><%= p.getProducto()%></td>
+				            <td class="data-list"><%= p.getDescripcion()%></td>
+				            <td class="data-list"><%= p.getId_categoria()%></td>
+				            <td class="data-list"><%= p.getExistencia()%></td>
+				            <td class="data-list"><%= p.getPrecio_venta()%></td>
+				            <td class="data-list" > <button type="submit" class="Editar">Editar</button> </td>
+                    		<td class="data-list" > <button type="submit" class="Eliminar">Eliminar</button> </td>
+				        </tr>
+               		<%}}%>
                 <tr>
                     <td class="data-list" ><img src="<%= request.getContextPath() %>/Imagenes/sabritas.png"></td>
                     <td class="data-list" >F1530C</td>

@@ -30,7 +30,7 @@
                 <ul class="menu-links">
 
                     <li class="nav-link">
-                        <a href="<%= request.getContextPath() %>/vistas/inventario.jsp">
+                        <a href="<%= request.getContextPath() %>/ProductosServlet?accion=inventario">
                             <i class='bx bx-package icon' ></i>
                             <span class="text nav-text">Inventario</span>
                         </a>

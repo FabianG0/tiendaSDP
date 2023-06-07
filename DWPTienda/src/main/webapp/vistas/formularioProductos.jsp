@@ -30,7 +30,7 @@
                 <ul class="menu-links">
 
                     <li class="nav-link">
-                        <a href="<%= request.getContextPath() %>/vistas/inventario.jsp">
+                        <a href="<%= request.getContextPath() %>/ProductosServlet?accion=inventario">
                             <i class='bx bx-package icon' ></i>
                             <span class="text nav-text">Inventario</span>
                         </a>
@@ -61,7 +61,7 @@
         <div class="text"><i class='bx bx-package icon'></i> Nuevo Producto</div>
         <div class="container">
             <div class="content">
-              <form action="<%= request.getContextPath() %>/ProductoServelet" id="formulario" method="post">
+              <form action="<%= request.getContextPath() %>/ProductosServlet" id="formulario" mehtod="post">
                 <div class="user-details">
                 <p style="margin-bottom:22px;">A continuación ingresa la información solicitada en el siguiente formulario y da clic en el botón <b>Aceptar</b>.</p>
                 <div class="input-box">
@@ -90,7 +90,7 @@
                   </div>
                   <div class="input-box">
                     <span class="details">Existencias <span class="required">*</span></span>
-                    <input type="number" placeholder="Ingresa el numero de existencias" id="existencias" name="exitencia" required>
+                    <input type="number" placeholder="Ingresa el numero de existencias" id="existencias" name="existencia" required>
                     <small></small>
                   </div>
                   <div class="input-box">
