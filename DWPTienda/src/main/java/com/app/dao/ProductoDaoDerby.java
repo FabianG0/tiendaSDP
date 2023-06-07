@@ -9,26 +9,46 @@ import com.app.configuration.Conexion;
 import com.app.modelo.Producto;
 
 public class ProductoDaoDerby implements ProductoDao{
-	Connection con;
+	Connection con = Conexion.getConexion();
 	PreparedStatement ps;
     ResultSet rs;
     
 	@Override
-	public Producto insertProduto(Producto newProducto) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertProducto(Producto newProducto) {
+		String sql = "INSERT INTO productos ( producto,id_categoria,descripcion ,precio_venta,existencia) values ('"+newProducto.getProducto()+"',"+newProducto.getId_categoria()+",'"+newProducto.getDescripcion()+"',"+newProducto.getPrecio_venta()+","+newProducto.getExistencia()+")";
+		try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            return true;
+        }catch(Exception e){
+        	return false;
+        }
 	}
 
 	@Override
-	public boolean updateProducto(Producto nweProducto, int idCurrentProducto) {
+	public boolean updateProducto(Producto newProducto, int idCurrentProducto) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE productos SET producto = '"+newProducto.getProducto()+"', id_categoria = "+newProducto.getId_categoria()+", descripcion = '"+newProducto.getDescripcion()+"', precio_venta = "+newProducto.getPrecio_venta()+", existencia = "+newProducto.getExistencia()+" WHERE id_producto = "+idCurrentProducto;
+		try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            return true;
+        }catch(Exception e){
+        	return false;
+        }
 	}
 
 	@Override
 	public boolean deleteProducto(int idProducto) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM productos WHERE id_producto="+idProducto;
+		try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            return true;
+        }catch(Exception e){
+        	return false;
+        }
 	}
 
 	@Override
@@ -36,7 +56,6 @@ public class ProductoDaoDerby implements ProductoDao{
 		ArrayList<Producto> productos = new ArrayList<>();
 		String sql = "SELECT * FROM productos";
         try{
-            con = Conexion.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
