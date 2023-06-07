@@ -9,7 +9,7 @@ import com.app.configuration.Conexion;
 import com.app.modelo.Producto;
 
 public class ProductoDaoDerby implements ProductoDao{
-	Connection con;
+	Connection con = Conexion.getConexion();
 	PreparedStatement ps;
     ResultSet rs;
     
@@ -28,7 +28,14 @@ public class ProductoDaoDerby implements ProductoDao{
 	@Override
 	public boolean deleteProducto(int idProducto) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "DELETE FROM productos WHERE id_producto="+idProducto;
+		try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            return true;
+        }catch(Exception e){
+        	return false;
+        }
 	}
 
 	@Override
@@ -36,7 +43,6 @@ public class ProductoDaoDerby implements ProductoDao{
 		ArrayList<Producto> productos = new ArrayList<>();
 		String sql = "SELECT * FROM productos";
         try{
-            con = Conexion.getConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
