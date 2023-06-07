@@ -14,15 +14,28 @@ public class ProductoDaoDerby implements ProductoDao{
     ResultSet rs;
     
 	@Override
-	public Producto insertProduto(Producto newProducto) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertProducto(Producto newProducto) {
+		String sql = "INSERT INTO productos ( producto,id_categoria,descripcion ,precio_venta,existencia) values ('"+newProducto.getProducto()+"',"+newProducto.getId_categoria()+",'"+newProducto.getDescripcion()+"',"+newProducto.getPrecio_venta()+","+newProducto.getExistencia()+")";
+		try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            return true;
+        }catch(Exception e){
+        	return false;
+        }
 	}
 
 	@Override
-	public boolean updateProducto(Producto nweProducto, int idCurrentProducto) {
+	public boolean updateProducto(Producto newProducto, int idCurrentProducto) {
 		// TODO Auto-generated method stub
-		return false;
+		String sql = "UPDATE productos SET producto = '"+newProducto.getProducto()+"', id_categoria = "+newProducto.getId_categoria()+", descripcion = '"+newProducto.getDescripcion()+"', precio_venta = "+newProducto.getPrecio_venta()+", existencia = "+newProducto.getExistencia()+" WHERE id_producto = "+idCurrentProducto;
+		try{
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            return true;
+        }catch(Exception e){
+        	return false;
+        }
 	}
 
 	@Override
