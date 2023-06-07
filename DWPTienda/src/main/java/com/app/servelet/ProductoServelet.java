@@ -16,7 +16,6 @@ import com.app.dao.ProductoDaoDerby;
 /**
  * Servlet implementation class ProductoServelet
  */
-
 public class ProductoServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
