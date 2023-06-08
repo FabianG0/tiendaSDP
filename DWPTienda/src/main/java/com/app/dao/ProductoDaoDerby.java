@@ -84,7 +84,24 @@ public class ProductoDaoDerby implements ProductoDao{
 	@Override
 	public Producto selectProducto(int idProducto) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM productos WHERE id_producto = ?";
+		try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idProducto);
+            rs = ps.executeQuery();
+            rs.next();
+            Producto p = new Producto();
+            p.setId_producto(rs.getInt(1));
+            p.setProducto(rs.getString(2));
+            p.setId_categoria(rs.getInt(3));
+            p.setDescripcion(rs.getString(4));
+            p.setPrecio_venta(rs.getDouble(5));
+            p.setImagen(rs.getBinaryStream(6));
+            p.setExistencia(rs.getInt(7));
+            return p;
+        }catch(Exception e){
+        	return null;
+        }
 	}
 
 }
