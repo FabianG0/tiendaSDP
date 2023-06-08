@@ -20,8 +20,15 @@ public class ProductoCotroller {
 	 */
 	public static ArrayList<Producto> getAllProductos(){
 		 ArrayList<Producto> productos = new ArrayList<>();
-		 ProductoDaoDerby daoProducto = new ProductoDaoDerby();
-		 productos = daoProducto.listProductos();
+		 ProductoDaoDerby productoDao= new ProductoDaoDerby();
+		 productos = productoDao.listProductos();
 		 return productos;
+	}
+	/**
+	 * funtion that deletes a product
+	 */
+	public static boolean deleteProducto(int id_producto) {
+		 ProductoDaoDerby productoDao= new ProductoDaoDerby();
+		 return productoDao.deleteProducto(id_producto);
 	}
 }

@@ -46,10 +46,11 @@ public class ProductoDaoDerby implements ProductoDao{
 	@Override
 	public boolean deleteProducto(int idProducto) {
 		// TODO Auto-generated method stub
-		String sql = "DELETE FROM productos WHERE id_producto="+idProducto;
+		String sql = "DELETE FROM productos WHERE id_producto = ?";
 		try{
             ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+            ps.setInt(1,idProducto);
+            ps.executeUpdate();
             return true;
         }catch(Exception e){
         	return false;

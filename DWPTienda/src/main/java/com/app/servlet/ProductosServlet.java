@@ -21,17 +21,18 @@ public class ProductosServlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String accion = request.getParameter("accion");
-		RequestDispatcher dispatcher;
 		if(accion!=null) {
 			switch (accion) {
 			case "inventario":
-				request.setAttribute("productos", ProductoCotroller.getAllProductos());
-				request.getRequestDispatcher("/vistas/inventario.jsp").forward(request, response);
-				dispatcher = request.getRequestDispatcher("/vistas/inventario.jsp");
-				dispatcher.forward(request, response);
+				redirectInventario(request, response);
 				break;
-			case "create":
-	
+			case "delete":
+				int id_producto = Integer.parseInt(request.getParameter("id_producto"));
+				if(ProductoCotroller.deleteProducto(id_producto)) {
+					redirectInventario(request, response);
+				}else {
+					redirectInventario(request, response);
+				}
 				break;
 			default:
 			}
@@ -43,10 +44,7 @@ public class ProductosServlet extends HttpServlet {
 			float precio = Float.parseFloat(request.getParameter("precio"));
 			///InputStream imagen = request.getPart("imagen").getInputStream();
 			if (ProductoCotroller.CreateProducto(0, producto, categoria, descripcion, precio, null, existencia)) {
-				request.setAttribute("productos", ProductoCotroller.getAllProductos());
-				request.getRequestDispatcher("/vistas/inventario.jsp").forward(request, response);
-				dispatcher = request.getRequestDispatcher("/vistas/inventario.jsp");
-				dispatcher.forward(request, response);
+				redirectInventario(request, response);
 			}
 		}
 	}
@@ -70,5 +68,12 @@ public class ProductosServlet extends HttpServlet {
 			throws ServletException, IOException {
 		processRequest(request, response);
 	}
-
+	
+	private void redirectInventario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher;
+		request.setAttribute("productos", ProductoCotroller.getAllProductos());
+		request.getRequestDispatcher("/vistas/inventario.jsp").forward(request, response);
+		dispatcher = request.getRequestDispatcher("/vistas/inventario.jsp");
+		dispatcher.forward(request, response);
+	}
 }

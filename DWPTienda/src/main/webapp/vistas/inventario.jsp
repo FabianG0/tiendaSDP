@@ -88,20 +88,9 @@
 				            <td class="data-list"><%= p.getExistencia()%></td>
 				            <td class="data-list"><%= p.getPrecio_venta()%></td>
 				            <td class="data-list" > <button type="submit" class="Editar">Editar</button> </td>
-                    		<td class="data-list" > <button type="submit" class="Eliminar">Eliminar</button> </td>
+                    		<td class="data-list" > <a href="<%= request.getContextPath() %>/ProductosServlet?accion=delete&id_producto=<%=p.getId_producto()%>"><button type="submit" class="Eliminar">Eliminar</button></a> </td>
 				        </tr>
                		<%}}%>
-                <tr>
-                    <td class="data-list" ><img src="<%= request.getContextPath() %>/Imagenes/sabritas.png"></td>
-                    <td class="data-list" >F1530C</td>
-                    <td class="data-list" >Sabritas</td>
-                    <td class="data-list" >Flaming Hot</td>
-                    <td class="data-list" >Botanas</td>
-                    <td class="data-list" >81</td>
-                    <td class="data-list" >$13.50</td>
-                    <td class="data-list" > <button type="submit" class="Editar">Editar</button> </td>
-                    <td class="data-list" > <button type="submit" class="Eliminar">Eliminar</button> </td>
-                </tr>       
             </table>  
     </section>
 </body>

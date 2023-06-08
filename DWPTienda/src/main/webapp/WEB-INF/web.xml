@@ -12,16 +12,6 @@
   </resource-ref>
   <servlet>
     <description></description>
-    <display-name>testDaoServelet</display-name>
-    <servlet-name>testDaoServelet</servlet-name>
-    <servlet-class>com.app.testDao.testDaoServelet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>testDaoServelet</servlet-name>
-    <url-pattern>/testDaoServelet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ProductosServlet</display-name>
     <servlet-name>ProductosServlet</servlet-name>
     <servlet-class>com.app.servlet.ProductosServlet</servlet-class>
