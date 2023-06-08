@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.app.controller.ProductoCotroller;
+import com.app.modelo.Producto;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -21,18 +23,28 @@ public class ProductosServlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String accion = request.getParameter("accion");
+		int id_producto;
 		if(accion!=null) {
 			switch (accion) {
 			case "inventario":
 				redirectInventario(request, response);
 				break;
 			case "delete":
-				int id_producto = Integer.parseInt(request.getParameter("id_producto"));
+				id_producto = Integer.parseInt(request.getParameter("id_producto"));
 				if(ProductoCotroller.deleteProducto(id_producto)) {
 					redirectInventario(request, response);
 				}else {
 					redirectInventario(request, response);
 				}
+				break;
+			case "update":
+				id_producto = Integer.parseInt(request.getParameter("id_producto"));
+				Producto currentProducto = ProductoCotroller.getProductoByID(id_producto);
+				RequestDispatcher dispatcher;
+				request.setAttribute("producto", currentProducto);
+				request.getRequestDispatcher("/vistas/formularioProductosModificar.jsp").forward(request, response);
+				dispatcher = request.getRequestDispatcher("/vistas/formularioProductosModificar.jsp");
+				dispatcher.forward(request, response);
 				break;
 			default:
 			}
@@ -43,8 +55,16 @@ public class ProductosServlet extends HttpServlet {
 			int existencia = Integer.parseInt(request.getParameter("existencia"));
 			float precio = Float.parseFloat(request.getParameter("precio"));
 			///InputStream imagen = request.getPart("imagen").getInputStream();
-			if (ProductoCotroller.CreateProducto(0, producto, categoria, descripcion, precio, null, existencia)) {
+			if(request.getParameter("Id_producto") != null) {
+				int idProducto = Integer.parseInt(request.getParameter("Id_producto"));
+				if (ProductoCotroller.updateProducto(idProducto, producto, categoria, descripcion, precio, null, existencia)) {
+					redirectInventario(request, response);
+				}
 				redirectInventario(request, response);
+			}else {
+				if (ProductoCotroller.CreateProducto(0, producto, categoria, descripcion, precio, null, existencia)) {
+					redirectInventario(request, response);
+				}
 			}
 		}
 	}

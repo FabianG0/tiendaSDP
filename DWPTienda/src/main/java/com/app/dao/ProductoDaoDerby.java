@@ -25,18 +25,26 @@ public class ProductoDaoDerby implements ProductoDao{
            // ps.setBlob(5, newProducto.getImagen());
             ps.setInt(5, newProducto.getExistencia());
             ps.executeUpdate();
+            ps.close();
             return true;
         }catch(Exception e){
         	return false;
         }
 	}
 	@Override
-	public boolean updateProducto(Producto newProducto, int idCurrentProducto) {
+	public boolean updateProducto(Producto newProducto, int idProducto) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE productos SET producto = '"+newProducto.getProducto()+"', id_categoria = "+newProducto.getId_categoria()+", descripcion = '"+newProducto.getDescripcion()+"', precio_venta = "+newProducto.getPrecio_venta()+", existencia = "+newProducto.getExistencia()+" WHERE id_producto = "+idCurrentProducto;
+		String sql = "UPDATE productos SET producto = ?, id_categoria = ?, descripcion = ?, precio_venta = ?, existencia = ? WHERE id_producto = ?";
 		try{
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+			 ps = con.prepareStatement(sql);
+	         ps.setString(1, newProducto.getProducto());
+	         ps.setInt(2, newProducto.getId_categoria());
+	         ps.setString(3, newProducto.getDescripcion());
+	         ps.setDouble(4, newProducto.getPrecio_venta());
+	         ps.setInt(5, newProducto.getExistencia());
+	         ps.setInt(6, idProducto);
+	         ps.executeUpdate();
+	         ps.close();
             return true;
         }catch(Exception e){
         	return false;
@@ -51,6 +59,7 @@ public class ProductoDaoDerby implements ProductoDao{
             ps = con.prepareStatement(sql);
             ps.setInt(1,idProducto);
             ps.executeUpdate();
+            ps.close();
             return true;
         }catch(Exception e){
         	return false;
@@ -74,6 +83,7 @@ public class ProductoDaoDerby implements ProductoDao{
                 p.setImagen(rs.getBinaryStream(6));
                 p.setExistencia(rs.getInt(7));
                 productos.add(p);
+                
             }
         }catch(Exception e){
         	return null;
@@ -98,6 +108,7 @@ public class ProductoDaoDerby implements ProductoDao{
             p.setPrecio_venta(rs.getDouble(5));
             p.setImagen(rs.getBinaryStream(6));
             p.setExistencia(rs.getInt(7));
+            ps.close();
             return p;
         }catch(Exception e){
         	return null;

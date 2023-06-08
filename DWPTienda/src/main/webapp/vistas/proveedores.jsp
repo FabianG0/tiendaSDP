@@ -1,3 +1,5 @@
+<%@page import="com.app.modelo.Proveedor"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -37,7 +39,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="<%= request.getContextPath() %>/vistas/proveedores.jsp">
+                        <a href="<%= request.getContextPath() %>/ProveedorServlet?accion=proveedores">>
                             <i class='bx bx-group icon'></i>
                             <span class="text nav-text">Proveedores</span>
                         </a>
@@ -48,7 +50,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="<%= request.getContextPath() %>/vistas/login.jsp">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Cerrar Sesión</span>
                     </a>
@@ -60,7 +62,7 @@
     <section class="home">
         <div class="text"><i class='bx bx-group icon'></i> Proveedores</div>
 
-            <div class="add_button"> <button type="submit" class="Agregar">Nuevo Proveedor</button> </div>
+            <div class="add_button"><a href="<%= request.getContextPath() %>/vistas/formularioProveedor.jsp"> <button type="submit" class="Agregar">Nuevo Proveedor</button></a> </div>
 
             <table class="table-data">
                 <tr class="data names">
@@ -71,16 +73,20 @@
                     <th class="data-title">Correo Electronico</th>
                     <th class="data-title" style="width: 1%;"></th>
                     <th class="data-title" style="width: 1%;"></th>
-                </tr>
-                <tr>
-                    <td class="data-list" >Angel Eduardo Bernaldez Hinojosa</td>
-                    <td class="data-list" >Sabritas</td>
-                    <td class="data-list" >Calle Rafael Hidalgo 102, C.P 50130.</td>
-                    <td class="data-list" >7292705255</td>
-                    <td class="data-list" >angedu14@gmail.com</td>
-                    <td class="data-list" > <button type="submit" class="Editar">Editar</button> </td>
-                    <td class="data-list" > <button type="submit" class="Eliminar">Eliminar</button> </td>
-                </tr>       
+                  </tr>
+                  <% ArrayList<Proveedor> proveedores =  (ArrayList<Proveedor>) request.getAttribute("Proveedores");
+                	if(proveedores != null){
+	               		for( Proveedor p: proveedores){ %>
+	               				<tr>
+				            <td class="data-list"><%= p.getRepresentante()%></td>
+				            <td class="data-list"><%= p.getEmpresa()%></td>
+				            <td class="data-list"><%= p.getDireccion()%></td>
+				            <td class="data-list"><%= p.getTelefono()%></td>
+				            <td class="data-list"><%= p.getCorreo_electronico()%></td>
+				            <td class="data-list" > <a href="<%= request.getContextPath() %>/ProveedorServlet?accion=update&id_proveedor=<%=p.getId_proveedor()%>"><button type="submit" class="Editar">Editar</button></a> </td>
+                    		<td class="data-list" > <a href="<%= request.getContextPath() %>/ProveedorServlet?accion=delete&id_proveedor=<%=p.getId_proveedor()%>"><button type="submit" class="Eliminar">Eliminar</button></a> </td>
+				        </tr>
+               		<%}}%>
             </table>  
     </section>
 </body>

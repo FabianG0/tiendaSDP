@@ -1,3 +1,4 @@
+<%@page import="com.app.modelo.Producto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -47,8 +48,8 @@
             </div>
 
             <div class="bottom-content">
-                <li class="">
-                    <a href="<%= request.getContextPath() %>/vistas/login.jsp">
+                <a href="<%= request.getContextPath() %>/vistas/login.jsp">
+                    <a href="#">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Cerrar Sesión</span>
                     </a>
@@ -63,20 +64,22 @@
             <div class="content">
               <form action="<%= request.getContextPath() %>/ProductosServlet" id="formulario" mehtod="post">
                 <div class="user-details">
-                <p style="margin-bottom:22px;">A continuación ingresa la información solicitada en el siguiente formulario y da clic en el botón <b>Aceptar</b>.</p>
+                <p style="margin-bottom:22px;">A continuación ingresa la información a cambiar en el siguiente formulario y da clic en el botón <b>Aceptar</b>.</p>
+                <% Producto producto = (Producto) request.getAttribute("producto"); %>
                 <div class="input-box">
                     <small></small>
                   </div>
                   <div class="input-box">
                   </div>
+                    <input type="text" style="display:none" placeholder="Ingresa el nombre del producto" id="producto" name="Id_producto" value="<%=producto.getId_producto()%>">
                   <div class="input-box">
                     <span class="details">Producto <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa el nombre del producto" id="producto" name="producto" required>
+                    <input type="text" placeholder="Ingresa el nombre del producto" id="producto" name="producto" value="<%=producto.getProducto()%>" required>
                     <small></small>
                   </div>
                   <div class="input-box">
                     <span class="details">Descripción <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa la descripcion" id="descripcion" name="descripcion" required>
+                    <input type="text" placeholder="Ingresa la descripcion" id="descripcion" name="descripcion" value="<%=producto.getDescripcion()%>" required>
                     <small></small>
                   </div>
                   <div class="input-box">
@@ -90,12 +93,12 @@
                   </div>
                   <div class="input-box">
                     <span class="details">Existencias <span class="required">*</span></span>
-                    <input type="number" placeholder="Ingresa el numero de existencias" id="existencias" name="existencia" required>
+                    <input type="number" placeholder="Ingresa el numero de existencias" id="existencias" name="existencia" value="<%=producto.getExistencia()%>" required>
                     <small></small>
                   </div>
                   <div class="input-box">
                     <span class="details">Precio <span class="required">*</span></span>
-                    <input type="number" step="0.01"placeholder="Ingresa el precio" id="precio" name="precio" required>
+                    <input type="number" step="0.01"placeholder="Ingresa el precio" id="precio" name="precio" value="<%=producto.getPrecio_venta()%>" required>
                     <small></small>
                   </div>
                   <div class="input-box">

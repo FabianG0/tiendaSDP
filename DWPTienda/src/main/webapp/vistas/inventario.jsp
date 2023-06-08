@@ -39,7 +39,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="<%= request.getContextPath() %>/vistas/proveedores.jsp">
+                        <a href="<%= request.getContextPath() %>/ProveedorServlet?accion=proveedores">
                             <i class='bx bx-group icon'></i>
                             <span class="text nav-text">Proveedores</span>
                         </a>
@@ -50,7 +50,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="<%= request.getContextPath() %>/vistas/login.jsp">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Cerrar Sesión</span>
                     </a>
@@ -87,7 +87,7 @@
 				            <td class="data-list"><%= p.getId_categoria()%></td>
 				            <td class="data-list"><%= p.getExistencia()%></td>
 				            <td class="data-list"><%= p.getPrecio_venta()%></td>
-				            <td class="data-list" > <button type="submit" class="Editar">Editar</button> </td>
+				            <td class="data-list" > <a href="<%= request.getContextPath() %>/ProductosServlet?accion=update&id_producto=<%=p.getId_producto()%>"><button type="submit" class="Editar">Editar</button></a> </td>
                     		<td class="data-list" > <a href="<%= request.getContextPath() %>/ProductosServlet?accion=delete&id_producto=<%=p.getId_producto()%>"><button type="submit" class="Eliminar">Eliminar</button></a> </td>
 				        </tr>
                		<%}}%>

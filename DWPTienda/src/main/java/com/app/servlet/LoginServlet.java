@@ -41,8 +41,8 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/vistas/inventario.jsp");
 		    dispatcher.forward(request, response);
 		}else {
-			//empleado
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/vistas/inventario.jsp");
+			//empleado aqui va lo de irvin
+			RequestDispatcher dispatcher = request.getRequestDispatcher("#");
 		    dispatcher.forward(request, response);
 		}
 		

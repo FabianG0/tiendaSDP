@@ -9,6 +9,6 @@ public interface ProductoDao {
 	public ArrayList<Producto> listProductos();
 	public Producto selectProducto(int idProducto);
 	public boolean insertProducto(Producto newProducto);
-	public boolean updateProducto(Producto nweProducto,int idCurrentProducto);
+	public boolean updateProducto(Producto nweProducto,int idProducto);
 	public boolean deleteProducto(int idProducto);
 }

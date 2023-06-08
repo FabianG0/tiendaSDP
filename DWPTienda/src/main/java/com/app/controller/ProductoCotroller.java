@@ -31,4 +31,20 @@ public class ProductoCotroller {
 		 ProductoDaoDerby productoDao= new ProductoDaoDerby();
 		 return productoDao.deleteProducto(id_producto);
 	}
+	/**
+	 * funtion that update a product
+	 */
+	public static boolean updateProducto(int id_producto, String producto, int id_categoria, String descripcion, float precio_venta, InputStream imagen, int existencia) {
+		Producto newProducto = new Producto(id_categoria,producto,id_categoria,descripcion,precio_venta,imagen,existencia);
+		ProductoDaoDerby productoDao = new ProductoDaoDerby();
+		return productoDao.updateProducto(newProducto, id_producto);
+	}
+	/**
+	 * funtion that return a product by its id
+	 */
+	public static Producto getProductoByID(int id_producto) {
+		ProductoDaoDerby productoDao = new ProductoDaoDerby();
+		Producto newProducto = productoDao.selectProducto(id_producto);
+		return newProducto;
+	}
 }

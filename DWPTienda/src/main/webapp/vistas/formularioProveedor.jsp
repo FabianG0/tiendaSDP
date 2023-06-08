@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Productos</title>
-    <link rel="stylesheet" href="css/style_formulario.css">
+    <title>Insert Proveedores</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style_formulario.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -37,7 +37,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="<%= request.getContextPath() %>/vistas/proveedores.jsp">
+                        <a href="<%= request.getContextPath() %>/ProveedorServlet?accion=proveedores">>
                             <i class='bx bx-group icon'></i>
                             <span class="text nav-text">Proveedores</span>
                         </a>
@@ -48,7 +48,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="<%= request.getContextPath() %>/vistas/login.jsp">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Cerrar Sesión</span>
                     </a>
@@ -61,7 +61,7 @@
         <div class="text"><i class='bx bx-group icon'></i> Nuevo Proveedor</div>
         <div class="container">
             <div class="content">
-              <form action="#" id="formulario">
+              <form action="<%= request.getContextPath() %>/ProveedorServlet" id="formulario" mehtod="post">
                 <div class="user-details">
                 <p style="margin-bottom:22px;">A continuación ingresa la información solicitada en el siguiente formulario y da clic en el botón <b>Aceptar</b>.</p>
                 <div class="input-box">
@@ -70,38 +70,28 @@
                   <div class="input-box">
                   </div>
                   <div class="input-box">
-                    <span class="details">Nombre <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa el nombre" id="nombre" required>
-                    <small></small>
-                  </div>
-                  <div class="input-box">
-                    <span class="details">Apellido Paterno <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa el apellido paterno" id="apellido_paterno" required>
-                    <small></small>
-                  </div>
-                  <div class="input-box">
-                    <span class="details">Apellido Materno <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa el apellido materno" id="apellido_materno" required>
-                    <small></small>
-                  </div>
-                  <div class="input-box">
                     <span class="details">Empresa <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa el nombre de la empresa" id="empresa" required>
+                    <input type="text" placeholder="Ingresa la empresa" id="empresa" name="empresa"required>
                     <small></small>
                   </div>
                   <div class="input-box">
-                    <span class="details">Dirección <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa la dirección" id="direccion" required>
+                    <span class="details">Representatne <span class="required">*</span></span>
+                    <input type="text" placeholder="Ingresa el nombre del representante" name="representante" required>
+                    <small></small>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Direccion <span class="required">*</span></span>
+                    <input type="text" placeholder="Ingresa la direccion" name="direccion" required>
                     <small></small>
                   </div>
                   <div class="input-box">
                     <span class="details">Teléfono <span class="required">*</span></span>
-                    <input type="text" placeholder="Ingresa el teléfono" id="telefono" required>
+                    <input type="text" placeholder="Ingresa el teléfono" name="telefono" required>
                     <small></small>
                   </div>
                   <div class="input-box">
                     <span class="details">Correo Electrónico <span class="required">*</span></span>
-                    <input type="email" placeholder="Ingresa el correo electrónico" id="correo_electronico" required>
+                    <input type="email" placeholder="Ingresa el correo electrónico" name="correo_electronico" required>
                     <small></small>
                   </div>
                 </div>
